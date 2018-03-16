@@ -44,20 +44,125 @@ The School project is a RestFul Sever with a student CRUD.
 **=> Test with Postman or other Rest client:**
 
 1. Create a student.
+
+**Json Request:**
+```
+{
+   "cmd":"CreateStudent",
+   "content":"{\"name\":\"jhonny\",\"type\":\"Kinder\",\"gender\":\"M\"}",
+   "timestamp":"1427081028856",
+   "observation":"null"
+}
+```
+
+**Json Response:**
+```
+{
+    "cmd": "CreateStudent",
+    "content": null,
+    "timestamp": 1427081028856,
+    "observation": "The student was created!",
+    "result": "success"
+}
+```
 ![Post!](https://github.com/jrcinco/school-project/blob/master/files/post.png)
 Note: cmd, timestamp and observation are informative fields.
 
 2. Update a student.
+
+**Json Request:**
+```
+{
+   "cmd":"UpdateStudent",
+   "content":"{\"name\":\"jhonny\",\"type\":\"Kinder\",\"gender\":\"M\"}",
+   "timestamp":"1427081028856",
+   "observation":"null"
+}
+```
+
+**Json Response:**
+```
+{
+    "cmd": "UpdateStudent",
+    "content": null,
+    "timestamp": 1427081028856,
+    "observation": "The student was updated!",
+    "result": "success"
+}
+```
 ![Put!](https://github.com/jrcinco/school-project/blob/master/files/put.png)
 Note: cmd, timestamp and observation are informative fields.
 
 3. Delete a student.
+
+**Json Request:**
+```
+{
+   "cmd":"DeleteStudent",
+   "content":"",
+   "timestamp":"1427081028856",
+   "observation":"null"
+}
+```
+
+**Json Response:**
+```
+{
+    "cmd": "DeleteStudent",
+    "content": null,
+    "timestamp": 1427081028856,
+    "observation": "The student was deleted!",
+    "result": "success"
+}
+```
 ![Put!](https://github.com/jrcinco/school-project/blob/master/files/delete.png)
 Note: cmd, timestamp and observation are informative fields.
 
 4. List students by name, type or gender.
+
 For example: 
       * http://localhost:8088/student?name=jhonny
       * http://localhost:8088/student?type=kinder
-      * http://localhost:8088/student?type=kinder&gender=M
+      * http://localhost:8088/student?type=kinder&gender=M``
+
+**Json Response:**
+```
+[
+    {
+        "id": 5,
+        "name": "jhoana4",
+        "gender": "M",
+        "type": "Kinder",
+        "timestamp": "20180216083452"
+    },
+    {
+        "id": 1,
+        "name": "jhonnyxxx",
+        "gender": "M",
+        "type": "Kinder",
+        "timestamp": "21453212454"
+    },
+    {
+        "id": 2,
+        "name": "jhonny14",
+        "gender": "M",
+        "type": "Kinder",
+        "timestamp": "21453212454"
+    },
+    {
+        "id": 3,
+        "name": "jhonny185",
+        "gender": "M",
+        "type": "Kinder",
+        "timestamp": "21453212454"
+    },
+    {
+        "id": 4,
+        "name": "jhoana",
+        "gender": "M",
+        "type": "Kinder",
+        "timestamp": "21453212454"
+    }
+]
+```
 ![Put!](https://github.com/jrcinco/school-project/blob/master/files/get.png)
