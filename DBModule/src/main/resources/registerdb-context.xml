@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd ">
+    <context:annotation-config/>
+    <context:component-scan base-package="com.school.registerdb"/>
+
+    <!-- JDBC Data Source. It is assumed you have MySQL running on localhost port 3306 with
+      username root and root as password. Change below if it's not the case -->
+      
+    <bean id="dataSourceRegisterDB" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/register_db"/>
+        <property name="username" value="root"/>
+        <property name="password" value=""/>
+        <property name="validationQuery" value="SELECT 1"/>
+    </bean>
+
+    <!-- Hibernate Session Factory -->
+    <bean id="sessionFactoryRegisterDB" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSourceRegisterDB"/>
+        <property name="packagesToScan">
+            <array>
+                <value>com.school.registerdb</value>
+            </array>
+        </property>
+        <property name="hibernateProperties">
+            <value>
+                hibernate.dialect=org.hibernate.dialect.MySQL5InnoDBDialect
+                hibernate.hbm2ddl.auto=validate
+            </value>
+        </property>
+    </bean>
+
+    <!-- Hibernate Transaction Manager -->
+    <bean id="transactionManagerRegisterDB" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactoryRegisterDB"/>
+    </bean>
+
+    <!-- Activates annotation based transaction management -->
+    <tx:annotation-driven transaction-manager="transactionManagerRegisterDB"/>    
+</beans>
