@@ -40,3 +40,24 @@ The School project is a RestFul Sever with a student CRUD.
     * mvn install -Dmaven.test.skip=true
 7. Generate WAR file
     * mvn war:war
+
+**=> Test with Postman or other Rest client:**
+
+1. Create a student.
+![Post!](https://github.com/jrcinco/school-project/blob/master/files/post.png)
+Note: cmd, timestamp and observation are informative fields.
+
+2. Update a student.
+![Put!](https://github.com/jrcinco/school-project/blob/master/files/put.png)
+Note: cmd, timestamp and observation are informative fields.
+
+3. Delete a student.
+![Put!](https://github.com/jrcinco/school-project/blob/master/files/delete.png)
+Note: cmd, timestamp and observation are informative fields.
+
+4. List students by name, type or gender.
+For example: 
+      * http://localhost:8088/student?name=jhonny
+      * http://localhost:8088/student?type=kinder
+      * http://localhost:8088/student?type=kinder&gender=M
+![Put!](https://github.com/jrcinco/school-project/blob/master/files/get.png)
