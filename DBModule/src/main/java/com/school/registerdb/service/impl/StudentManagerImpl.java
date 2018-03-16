@@ -32,6 +32,7 @@ public class StudentManagerImpl extends GenericManagerImpl<Student, Long> implem
     }
     
     /**     
+     * Find the student name that is start with <name> and follow by any characters.
      * @param name
      * @return a student list sorted alphabetically 
      */
