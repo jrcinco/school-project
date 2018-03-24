@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
  * @author jhonny
  */
 @Service
-public class StudentManagerImpl extends GenericManagerImpl<Student, Long> implements StudentManager{
+public class StudentManagerImpl extends GenericManagerImpl<Student, Long> implements StudentManager {
     
     private StudentDao studentDao;
     

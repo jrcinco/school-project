@@ -1,5 +1,5 @@
 
-package com.school.web.service.util;
+package com.school.web.util;
 import java.io.Serializable;
 
 public abstract class BaseObject implements Serializable {    

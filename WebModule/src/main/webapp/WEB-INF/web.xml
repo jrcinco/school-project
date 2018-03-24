@@ -8,9 +8,8 @@
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
-                    classpath*:/bootstrap-server.xml                    
-                    classpath*:/registerdb-context.xml                   
-                </param-value>
+			classpath*:/registerdb-context.xml                   
+		</param-value>
 	</context-param>
 
 	<listener>

@@ -20,14 +20,20 @@ public class Student implements java.io.Serializable {
     private String type;
     private String timestamp;
 
-    public Student() {
+    public Student() {}
+
+    public Student(String name, String gender, String type, String timestamp) {        
+        this.name   = name;
+        this.gender = gender;
+        this.type   = type;
+        this.timestamp = timestamp;
     }
 
     public Student(Long id, String name, String gender, String type, String timestamp) {
-        this.id = id;
-        this.name = name;        
+        this.id     = id;
+        this.name   = name;        
         this.gender = gender;
-        this.type = type;
+        this.type   = type;
         this.timestamp = timestamp;
     }    
 
@@ -76,5 +82,14 @@ public class Student implements java.io.Serializable {
 
     public void setTimestamp(String timestamp) {
         this.timestamp = timestamp;
+    }
+
+    @Override
+    public String toString() {
+        return "Student{" + "id=" + id 
+                + ", name=" + name 
+                + ", gender=" + gender 
+                + ", type=" + type 
+                + ", timestamp=" + timestamp + '}';
     }
 }
