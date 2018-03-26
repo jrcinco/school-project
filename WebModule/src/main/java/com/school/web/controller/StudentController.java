@@ -47,7 +47,7 @@ public class StudentController {
         logger.info("[StudentController.find] name data: {}", name);
         logger.info("[StudentController.find] name gender: {}", gender);
         logger.info("[StudentController.find] name type : {}", type);        
-        return studentHandler.find(name, gender, type);       
+        return studentHandler.find(name, gender, type);        
     }    
     
     @ResponseBody

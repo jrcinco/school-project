@@ -4,24 +4,24 @@ package com.school.web.validation;
  * @author jhonny
  */
 public class ValidationDetail {
-    private String resultCode;
+    private String code;
     private String field;
     private String message;
 
     public ValidationDetail() {}
 
-    public ValidationDetail(String resultCode, String field, String message) {
-        this.resultCode = resultCode;
+    public ValidationDetail(String code, String field, String message) {
+        this.code = code;
         this.field = field;
         this.message = message;
     }
 
-    public String getResultCode() {
-        return resultCode;
+    public String getCode() {
+        return code;
     }
 
-    public void setResultCode(String resultCode) {
-        this.resultCode = resultCode;
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public String getField() {

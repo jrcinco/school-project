@@ -15,14 +15,13 @@ public class ClientErrorException extends RuntimeException {
 
     public ClientErrorException(String code) {
         super(PropertiesUtil.getProperties().getProperty(code));
-        System.out.println("Properties Util: "+PropertiesUtil.getProperties());
-        System.out.println("Properties Util CODE: "+PropertiesUtil.getProperties().getProperty(code));        
         this.code = code;
     }
 
-    public ClientErrorException(String code, String msg) {
+    public ClientErrorException(String code, List<ValidationDetail> messages) {
         super(PropertiesUtil.getProperties().getProperty(code));
         this.code = code;
+        this.messages = messages;
     }
 
     public ClientErrorException(String msg, Throwable rootException) {

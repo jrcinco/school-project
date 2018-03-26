@@ -76,12 +76,8 @@ public class ValidationAspect {
             }
         }
 
-        if (errorCount > 0) {
-            String code = "VA001";
-            ClientErrorException exception = new ClientErrorException(code);
-            exception.setMessages(messages);
-            exception.setCode(code);
-            throw exception;
+        if (errorCount > 0) {        
+            throw new ClientErrorException("VA001", messages);
         }
     }
 }
