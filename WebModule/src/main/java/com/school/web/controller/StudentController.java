@@ -16,6 +16,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,6 +30,7 @@ import org.slf4j.LoggerFactory;
  */
 @RestController
 @RequestMapping("/student")
+@Api(value="school", description="Operations to create students in School")
 public class StudentController {    
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
     @Autowired
@@ -35,7 +40,13 @@ public class StudentController {
      * The request param are optional.
      */
     @ResponseBody
-    @RequestMapping(method = RequestMethod.GET)    
+    @RequestMapping(method = RequestMethod.GET)
+    @ApiOperation(value = "View a list of available students", response = Student.class, responseContainer="List")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Success"),
+            @ApiResponse(code = 400, message = "Bad Request"),
+            @ApiResponse(code = 500, message = "Server Error: Application exception. Please contact your administrative personnel for technical support")
+    })
     public List<Student> findStudent(
             @RequestParam(required=false, value = "name") String name,
             @RequestParam(required=false, value = "gender") String gender,
@@ -47,7 +58,13 @@ public class StudentController {
     }    
     
     @ResponseBody
-    @RequestMapping(method = RequestMethod.POST)    
+    @RequestMapping(method = RequestMethod.POST)
+    @ApiOperation(value = "Create students", response = OperationResult.class)
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Success"),
+            @ApiResponse(code = 400, message = "Bad Request"),
+            @ApiResponse(code = 500, message = "Server Error: Application exception. Please contact your administrative personnel for technical support")
+    })
     public OperationResult createStudent(@RequestBody final StudentDetailDto payload) {
         logger.info("[StudentController.create] json data: {}", payload);
         logger.info("[StudentController.create] Handler: {}", studentHandler);
@@ -56,7 +73,13 @@ public class StudentController {
     }    
 
     @ResponseBody
-    @RequestMapping(method = RequestMethod.PUT, value = "/{id}")    
+    @RequestMapping(method = RequestMethod.PUT, value = "/{id}")
+    @ApiOperation(value = "Update students", response = OperationResult.class)
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Success"),
+            @ApiResponse(code = 400, message = "Bad Request"),
+            @ApiResponse(code = 500, message = "Server Error: Application exception. Please contact your administrative personnel for technical support")
+    })    
     public OperationResult updateStudent(
             @RequestBody final StudentDetailDto payload, 
             @PathVariable Long id) {
@@ -67,7 +90,13 @@ public class StudentController {
     }    
 
     @ResponseBody
-    @RequestMapping(method = RequestMethod.DELETE, value = "/{id}")    
+    @RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
+    @ApiOperation(value = "Delete students", response = OperationResult.class)
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Success"),
+            @ApiResponse(code = 400, message = "Bad Request"),
+            @ApiResponse(code = 500, message = "Server Error: Application exception. Please contact your administrative personnel for technical support")
+    })
     public OperationResult deleteStudent(@PathVariable Long id) {
         logger.info("[StudentController.delete] ID: {}", id);                
         studentHandler.delete(id);
