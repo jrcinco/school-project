@@ -24,11 +24,6 @@ public class ClientErrorException extends RuntimeException {
         this.messages = messages;
     }
 
-    public ClientErrorException(String msg, Throwable rootException) {
-        super(msg);
-        rootException.printStackTrace();
-    }
-
     public String getCode() {
         return code;
     }

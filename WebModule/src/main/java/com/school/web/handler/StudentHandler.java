@@ -5,7 +5,8 @@ import com.school.registerdb.model.Student;
 import com.school.registerdb.service.StudentManager;
 import com.school.web.util.DateUtil;
 import com.school.web.dto.StudentDetailDto;
-import com.school.web.validation.annotation.ApplicationValidation;
+import com.school.web.validation.annotation.FieldValidation;
+import com.school.web.validation.rule.StudentRule;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
@@ -20,15 +21,13 @@ import org.slf4j.LoggerFactory;
  */
 @Service
 @Transactional
-public class StudentHandler {    
+public class StudentHandler {
+    private final Logger logger = LoggerFactory.getLogger(this.getClass()); 
     @Autowired
     private StudentManager studentManager;
-    private final Logger logger;
+    @Autowired
+    private StudentRule studentRule;
     
-    public StudentHandler() {
-        logger = LoggerFactory.getLogger(this.getClass());
-    }        
-
     public List<Student> find(String name, String gender, String type) {
         List<Student> students;
         if (name != null) {
@@ -44,8 +43,9 @@ public class StudentHandler {
         return students;
     }
 
-    @ApplicationValidation
+    @FieldValidation
     public void create(@Validated StudentDetailDto dto) {
+        studentRule.validateCreate(dto, studentManager);
         Student student = new Student(dto.getName(), 
                                     dto.getGender(), 
                                     dto.getType(), 
@@ -54,8 +54,9 @@ public class StudentHandler {
         studentManager.saveOrUpdate(student);
     }
     
-    public void update(Long id, StudentDetailDto dto) {        
-        Student student = studentManager.find(id);
+    @FieldValidation
+    public void update(Long id, @Validated StudentDetailDto dto) {        
+        Student student = studentRule.validateUpdate(id, dto, studentManager);
         logger.info("[StudentController.update] student: {}", student);
         student.setName(dto.getName());            
         student.setGender(dto.getGender());
@@ -64,9 +65,9 @@ public class StudentHandler {
         studentManager.saveOrUpdate(student);
     }
     
-    public void delete(Long id) {        
-        Student student = studentManager.find(id);
+    public void delete(Long id) {
+        Student student = studentRule.validateDelete(id, studentManager);
         logger.info("[StudentController.delete] student: {}", student);
-        studentManager.delete(student);  
+        studentManager.delete(student);
     }
 }

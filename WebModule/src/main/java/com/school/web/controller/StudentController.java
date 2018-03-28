@@ -27,13 +27,9 @@ import org.slf4j.LoggerFactory;
 @RestController
 @RequestMapping("/student")
 public class StudentController {    
-    private final Logger logger;
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
     @Autowired
     private StudentHandler studentHandler;
-
-    public StudentController() {        
-        logger = LoggerFactory.getLogger(this.getClass());
-    }    
 
     /**
      * The request param are optional.

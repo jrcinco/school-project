@@ -1,5 +1,6 @@
 package com.school.web.validation.aspect;
 
+import com.school.registerdb.service.StudentManager;
 import com.school.web.validation.ApplicationAbstractValidator;
 import com.school.web.validation.ValidatorRegistry;
 import com.school.web.validation.ValidationDetail;
@@ -24,20 +25,23 @@ import java.util.List;
 import java.util.Properties;
 
 import javax.validation.Validator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author jhonny
  */
 @Aspect
-public class ValidationAspect {
+public class ValidationAspect {    
     @Autowired
     private ValidatorRegistry registry;    
     @Autowired
     private Validator annotationValidator;
     @Autowired
     private Properties properties;
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    @Before(value = "execution(public * *(..)) && @annotation(com.school.web.validation.annotation.ApplicationValidation)")
+    @Before(value = "execution(public * *(..)) && @annotation(com.school.web.validation.annotation.FieldValidation)")
     public void doBefore(JoinPoint point) {
         Annotation[][] paramAnnotations =
                 ((MethodSignature) point.getSignature()).getMethod().getParameterAnnotations();
@@ -46,7 +50,7 @@ public class ValidationAspect {
             for (Annotation annotation: paramAnnotations[i]) {
                 //checking for standard org.springframework.validation.annotation.Validated
                 if (annotation.annotationType() == Validated.class) {
-                    Object arg = point.getArgs()[i];
+                    Object arg = point.getArgs()[i];                    
                     if (arg == null) continue;
                     validate(arg);
                 }
@@ -76,8 +80,9 @@ public class ValidationAspect {
             }
         }
 
-        if (errorCount > 0) {        
+        if (errorCount > 0) {      
+            logger.info("[ValidationAspect.validate] throw error: {}", messages);  
             throw new ClientErrorException("VA001", messages);
-        }
+        } 
     }
 }
