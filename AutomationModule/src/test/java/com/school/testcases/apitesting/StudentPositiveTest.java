@@ -77,9 +77,9 @@ public class StudentPositiveTest {
         
         logger.info("Status Code: {}", response.getStatus());
         if (response.getStatus() == Constants.OK_STATUS_CODE) {
-            assertTrue(true);  //Check that a condition is true
+            assertTrue(true);  // Check that a condition is true.
         } else {                        
-            assertTrue(false); //Check that a condition is false
+            assertTrue(false); // Check that a condition is false.
         }
     }
 
@@ -102,7 +102,29 @@ public class StudentPositiveTest {
                                         expectedResults.get(3)));  // Wendy
         } else {
             logger.error("Status Code: {}", response.getStatus());                    
-            assertTrue(false); //Check that a condition is false
+            assertTrue(false); // Check that a condition is false.
         }                 
+    }
+
+    @Test
+    @Parameters({
+        "4, Wendy Lala, F, Kinder, 20180328182530"            
+    })
+    public void test3PutStudent(Long id, String name, String gender, 
+                                String type, String timestamp) {
+        logger.info("StudentPositiveTest: API Testing: PUT");
+                 
+        StudentDto dto = new StudentDto(name, gender, type, timestamp);       
+        Map<String, Object> pathParams = new HashMap<>();                                                                        
+        pathParams.put("id", id);        
+        
+        Response response = RequestUtil.putRequest(EndpointPath.STUDENT_ID_PATH, pathParams, dto); 
+        
+        if (response.getStatus() == Constants.OK_STATUS_CODE) {
+            assertTrue(true);  // Check that a condition is true.
+        } else {
+            logger.error("Status Code: " + response.getStatus());                              
+            assertTrue(false); // Check that a condition is false.
+        }  
     }
 }
