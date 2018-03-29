@@ -1,7 +1,7 @@
 package com.school.registerdb.dao.impl;
 
 import com.school.registerdb.dao.GenericDao;
-import com.school.registerdb.utils.Constants;
+import com.school.registerdb.util.Constants;
 import org.hibernate.SessionFactory;
 
 import java.io.Serializable;

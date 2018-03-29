@@ -13,4 +13,13 @@
     <artifactId>AutomationModule</artifactId>
     <packaging>jar</packaging>
     <name>Automation Module</name>
+
+    <dependencies>
+        <!--Dependencies DB Module-->                                              
+        <dependency>
+            <groupId>com.school</groupId>
+            <artifactId>DBModule</artifactId>
+            <version>1.0</version>
+        </dependency>
+    </dependencies>
 </project>

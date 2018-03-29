@@ -2,6 +2,7 @@ package com.school.testcases.apitesting;
 
 import com.school.automation.dto.StudentDto;
 import com.school.automation.util.MapperUtil;
+import com.school.automation.util.DataBaseUtil;
 import com.school.automation.common.DataPath;
 
 import java.util.ArrayList;
@@ -28,6 +29,9 @@ public class StudentPositiveTest {
      */
     @BeforeClass
     public static void setUpClass() {
+        // Database
+        DataBaseUtil.cleanup();
+
         logger.info("Invoked once before all test methods");
         MapperUtil<StudentDto> mapper = new MapperUtil<>();
         expectedResults = mapper.getJsonListFunctionality(StudentDto.class, DataPath.STUDENT_LIST_PATH);
