@@ -14,6 +14,16 @@
     <packaging>jar</packaging>
     <name>Automation Module</name>
 
+    <reporting>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-report-plugin</artifactId>
+				<version>2.21.0</version>
+			</plugin>
+		</plugins>
+	</reporting>
+
     <dependencies>
         <!--Dependencies DB Module-->                                              
         <dependency>
@@ -57,5 +67,5 @@
             <artifactId>jersey-media-json-jackson</artifactId>
             <version>2.25</version>
         </dependency>
-    </dependencies>
+    </dependencies>    
 </project>

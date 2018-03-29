@@ -23,6 +23,29 @@ The School project is a RestFul Sever with a student CRUD.
 5. Run server jetty.
     * cd /WebModule
     * mvn jetty:run
+6. Open API Restful Swagger.
+    * http://localhost:8088/swagger-ui.html
+![Swagger!](https://github.com/jrcinco/school-project/blob/master/files/swagger.png)
+
+**=> Run Test:**
+
+1. Compile database module.
+    * cd /DBModule
+    * mvn clean install
+2. Compile web module.
+    * cd /WebModule
+    * mvn clean install
+3. Run server jetty.
+    * cd /WebModule
+    * mvn jetty:run
+4. Test the API Restful.
+    * cd /AutomationModule
+    * mvn clean test
+3. Test the API Restful and Generate the test report.
+    * cd /AutomationModule
+    * mvn clean site
+    * find the report in /AutomationModule/target/site/index.html 
+![Report!](https://github.com/jrcinco/school-project/blob/master/files/report.png)
 
 **=> Special commands:**
 
@@ -40,6 +63,8 @@ The School project is a RestFul Sever with a student CRUD.
     * mvn install -Dmaven.test.skip=true
 7. Generate WAR file
     * mvn war:war
+7. Generate Report
+    * mvn clean site
 
 **=> Test with Postman or other Rest client:**
 
@@ -48,22 +73,16 @@ The School project is a RestFul Sever with a student CRUD.
 **Json Request:**
 ```
 {
-   "cmd":"CreateStudent",
-   "content":"{\"name\":\"jhonny\",\"type\":\"Kinder\",\"gender\":\"M\"}",
-   "timestamp":"1427081028856",
-   "observation":"null"
+  "name":"jhonny cinco",
+  "gender":"M",
+  "type":"Kinder",
+  "timestamp":"2018104518524523"
 }
 ```
 
 **Json Response:**
 ```
-{
-    "cmd": "CreateStudent",
-    "content": null,
-    "timestamp": 1427081028856,
-    "observation": "The student was created!",
-    "result": "success"
-}
+{}
 ```
 ![Post!](https://github.com/jrcinco/school-project/blob/master/files/post.png)
 Note: cmd, timestamp and observation are informative fields.
@@ -73,22 +92,16 @@ Note: cmd, timestamp and observation are informative fields.
 **Json Request:**
 ```
 {
-   "cmd":"UpdateStudent",
-   "content":"{\"name\":\"jhonny\",\"type\":\"Kinder\",\"gender\":\"M\"}",
-   "timestamp":"1427081028856",
-   "observation":"null"
+  "name":"jhoselin",
+  "gender":"F",
+  "type":"Kinder",
+  "timestamp":"2018104518524523"
 }
 ```
 
 **Json Response:**
 ```
-{
-    "cmd": "UpdateStudent",
-    "content": null,
-    "timestamp": 1427081028856,
-    "observation": "The student was updated!",
-    "result": "success"
-}
+{}
 ```
 ![Put!](https://github.com/jrcinco/school-project/blob/master/files/put.png)
 Note: cmd, timestamp and observation are informative fields.
@@ -97,23 +110,12 @@ Note: cmd, timestamp and observation are informative fields.
 
 **Json Request:**
 ```
-{
-   "cmd":"DeleteStudent",
-   "content":"",
-   "timestamp":"1427081028856",
-   "observation":"null"
-}
+{}
 ```
 
 **Json Response:**
 ```
-{
-    "cmd": "DeleteStudent",
-    "content": null,
-    "timestamp": 1427081028856,
-    "observation": "The student was deleted!",
-    "result": "success"
-}
+{}
 ```
 ![Put!](https://github.com/jrcinco/school-project/blob/master/files/delete.png)
 Note: cmd, timestamp and observation are informative fields.

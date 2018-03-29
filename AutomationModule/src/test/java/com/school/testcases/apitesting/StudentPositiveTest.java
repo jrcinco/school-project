@@ -24,7 +24,6 @@ import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
 import org.junit.FixMethodOrder;
 import static org.junit.Assert.*;
-import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.collection.IsIterableContainingInAnyOrder.containsInAnyOrder;
 
 import junitparams.JUnitParamsRunner;
