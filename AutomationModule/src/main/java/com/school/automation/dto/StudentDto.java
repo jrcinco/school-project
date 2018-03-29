@@ -1,5 +1,7 @@
 package com.school.automation.dto;
 
+import java.util.Objects;
+
 public class StudentDto {
     private Long id;
     private String name;
@@ -25,7 +27,7 @@ public class StudentDto {
         this.gender = gender;
         this.type   = type;
         this.timestamp = timestamp;
-    }
+    }        
 
     public Long getId() {
         return id;
@@ -69,9 +71,45 @@ public class StudentDto {
 
     @Override
     public String toString() {
-        return "StudentDto{" + "name=" + name 
+        return "StudentDto{" + "id=" + id 
+                + ", name=" + name
                 + ", gender=" + gender 
                 + ", type=" + type 
                 + ", timestamp=" + timestamp + '}';
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 53 * hash + Objects.hashCode(this.name);
+        hash = 53 * hash + Objects.hashCode(this.gender);
+        hash = 53 * hash + Objects.hashCode(this.type);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        
+        final StudentDto other = (StudentDto) obj;
+        if (!Objects.equals(this.name, other.name)) {
+            return false;
+        }
+        if (!Objects.equals(this.gender, other.gender)) {
+            return false;
+        }
+        if (!Objects.equals(this.type, other.type)) {
+            return false;
+        }
+
+        return true;
     }
 }

@@ -21,7 +21,11 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.junit.runners.MethodSorters;
+import org.junit.FixMethodOrder;
 import static org.junit.Assert.*;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.collection.IsIterableContainingInAnyOrder.containsInAnyOrder;
 
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
@@ -29,6 +33,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @RunWith(JUnitParamsRunner.class)
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class StudentPositiveTest {    
     private final static Logger logger = LoggerFactory.getLogger(StudentPositiveTest.class);
     private static List<StudentDto> expectedResults = new ArrayList<>();
@@ -39,31 +44,12 @@ public class StudentPositiveTest {
      */
     @BeforeClass
     public static void setUpClass() {
-        // Database
-        DataBaseUtil.cleanup();
-
-        logger.info("Invoked once before all test methods");
+        logger.info("Invoked once before all test methods");        
+        DataBaseUtil.cleanup(); // Clean Database.
+        
         MapperUtil<StudentDto> mapper = new MapperUtil<>();
         expectedResults = mapper.getJsonListFunctionality(StudentDto.class, DataPath.STUDENT_LIST_PATH);
         logger.info("[StudentPositiveTest][setUpClass] Json List: " + expectedResults);
-    }
-
-    /**
-     * This method is invoked before a test method found from this class or
-     * from the inner classes is invoked.
-     */
-    @Before
-    public void setUp() {
-        logger.info("Invoked before each test method");        
-    }
-
-    /**
-     * This method is invoked after a test method found from this class or
-     * from the inner classes is invoked.
-     */
-    @After
-    public void tearDown() {
-        logger.info("Invoked after each test method");                        
     }
     
     /**
@@ -90,10 +76,33 @@ public class StudentPositiveTest {
         Response response = RequestUtil.postRequest(EndpointPath.STUDENT_PATH, dto); 
         
         logger.info("Status Code: {}", response.getStatus());
-        if(response.getStatus() == Constants.OK_STATUS_CODE) {
+        if (response.getStatus() == Constants.OK_STATUS_CODE) {
             assertTrue(true);  //Check that a condition is true
         } else {                        
             assertTrue(false); //Check that a condition is false
         }
-    }    
+    }
+
+    @Test
+    public void test2GetStudent() {
+        logger.info("StudentPositiveTest: API Testing: GET");
+        
+        Response response = RequestUtil.getRequest(EndpointPath.STUDENT_PATH);        
+        
+        if (response.getStatus() == Constants.OK_STATUS_CODE) {            
+            List<StudentDto> actualResult = response 
+                    .readEntity(new GenericType<List<StudentDto>>() {});
+            logger.info("Display actual result: {}", actualResult);
+            
+            //Check whether two arrays are equal to each other.        
+            assertThat(actualResult, containsInAnyOrder(
+                                        expectedResults.get(0),    // Jhonny
+                                        expectedResults.get(1),    // Jhoselin
+                                        expectedResults.get(2),    // Elvis
+                                        expectedResults.get(3)));  // Wendy
+        } else {
+            logger.error("Status Code: {}", response.getStatus());                    
+            assertTrue(false); //Check that a condition is false
+        }                 
+    }
 }
