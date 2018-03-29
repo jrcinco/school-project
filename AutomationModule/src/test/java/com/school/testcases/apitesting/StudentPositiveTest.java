@@ -1,10 +1,15 @@
 package com.school.testcases.apitesting;
 
+import com.school.registerdb.util.Constants;
 import com.school.automation.dto.StudentDto;
 import com.school.automation.util.MapperUtil;
 import com.school.automation.util.DataBaseUtil;
+import com.school.automation.util.RequestUtil;
 import com.school.automation.common.DataPath;
+import com.school.automation.common.EndpointPath;
 
+import javax.ws.rs.core.GenericType;
+import javax.ws.rs.core.Response;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -15,10 +20,15 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import static org.junit.Assert.*;
 
+import junitparams.JUnitParamsRunner;
+import junitparams.Parameters;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+@RunWith(JUnitParamsRunner.class)
 public class StudentPositiveTest {    
     private final static Logger logger = LoggerFactory.getLogger(StudentPositiveTest.class);
     private static List<StudentDto> expectedResults = new ArrayList<>();
@@ -66,7 +76,24 @@ public class StudentPositiveTest {
     }
 
     @Test
-    public void test1PostStudent() {
-        logger.info("StudentPositiveTest: API Testing: POST");                                                      
+    @Parameters({
+            "Jhonny, M, Kinder, 20180328142530",
+            "Jhoselin, F, Kinder, 20180328152530",
+            "Elvis, M, Kinder, 20180328162530",
+            "Wendy, F, Kinder, 20180328172530"
+    })
+    public void test1PostStudent(String name, String gender, 
+                                String type, String timestamp) {
+        logger.info("StudentPositiveTest: API Testing: POST");
+ 
+        StudentDto dto = new StudentDto(name, gender, type, timestamp);
+        Response response = RequestUtil.postRequest(EndpointPath.STUDENT_PATH, dto); 
+        
+        logger.info("Status Code: {}", response.getStatus());
+        if(response.getStatus() == Constants.OK_STATUS_CODE) {
+            assertTrue(true);  //Check that a condition is true
+        } else {                        
+            assertTrue(false); //Check that a condition is false
+        }
     }    
 }

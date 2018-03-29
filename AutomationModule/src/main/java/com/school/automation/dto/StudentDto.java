@@ -9,6 +9,14 @@ public class StudentDto {
     
     public StudentDto() {}
 
+    public StudentDto(String name, String gender, 
+                    String type, String timestamp) {
+        this.name   = name;
+        this.gender = gender;
+        this.type   = type;
+        this.timestamp = timestamp;
+    }
+
     public StudentDto(Long id, 
             String name, String gender, 
             String type, String timestamp) {
