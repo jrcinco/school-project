@@ -127,4 +127,24 @@ public class StudentPositiveTest {
             assertTrue(false); // Check that a condition is false.
         }  
     }
+
+    @Test
+    @Parameters({
+        "3"            // Delete the student Elvis.
+    })
+    public void test4DeleteStudent(Long id) {
+        logger.info("StudentPositiveTest: API Testing: DELETE");       
+        
+        Map<String, Object> pathParams = new HashMap<>();                                                                        
+        pathParams.put("id", id);        
+        
+        Response response = RequestUtil.deleteRequest(EndpointPath.STUDENT_ID_PATH, pathParams); 
+        
+        if (response.getStatus() == Constants.OK_STATUS_CODE) {
+            assertTrue(true);  // Check that a condition is true.
+        } else {
+            logger.error("Status Code: " + response.getStatus());                              
+            assertTrue(false); // Check that a condition is false.
+        }       
+    }
 }
