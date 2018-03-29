@@ -1,5 +1,14 @@
 package com.school.testcases.apitesting;
 
+import com.school.automation.dto.StudentDto;
+import com.school.automation.util.MapperUtil;
+import com.school.automation.common.DataPath;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -11,6 +20,7 @@ import org.slf4j.LoggerFactory;
 
 public class StudentPositiveTest {    
     private final static Logger logger = LoggerFactory.getLogger(StudentPositiveTest.class);
+    private static List<StudentDto> expectedResults = new ArrayList<>();
 
     /**
      * This test method is invoked once before any test method found from this class
@@ -18,7 +28,10 @@ public class StudentPositiveTest {
      */
     @BeforeClass
     public static void setUpClass() {
-        logger.info("Invoked once before all test methods");        
+        logger.info("Invoked once before all test methods");
+        MapperUtil<StudentDto> mapper = new MapperUtil<>();
+        expectedResults = mapper.getJsonListFunctionality(StudentDto.class, DataPath.STUDENT_LIST_PATH);
+        logger.info("[StudentPositiveTest][setUpClass] Json List: " + expectedResults);
     }
 
     /**
