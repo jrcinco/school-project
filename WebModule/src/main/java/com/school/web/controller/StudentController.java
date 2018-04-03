@@ -1,12 +1,12 @@
 
 package com.school.web.controller;
 
+import com.school.registerdb.common.Type;
 import com.school.registerdb.model.Student;
 import com.school.web.dto.StudentDetailDto;
 import com.school.web.util.ResponseUtil;
 import com.school.web.handler.StudentHandler;
 import com.school.web.common.payload.OperationResult;
-import com.school.web.common.payload.EmptyResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

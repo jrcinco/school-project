@@ -1,6 +1,7 @@
 
 package com.school.registerdb.dao;
 
+import com.school.registerdb.common.Type;
 import com.school.registerdb.model.Student;
 import java.util.List;
 
@@ -10,6 +11,6 @@ import java.util.List;
  */
 public interface StudentDao extends GenericDao<Student, Long>{
     public List<Student> findByName(String name);
-    public List<Student> findByType(String type);
-    public List<Student> findByTypeAndGender(String type, String gender);
+    public List<Student> findByType(Type type);
+    public List<Student> findByTypeAndGender(Type type, String gender);
 }

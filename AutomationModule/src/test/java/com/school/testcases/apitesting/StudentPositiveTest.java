@@ -11,13 +11,10 @@ import com.school.automation.common.EndpointPath;
 import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.Response;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.junit.After;
 import org.junit.AfterClass;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -93,7 +90,7 @@ public class StudentPositiveTest {
                     .readEntity(new GenericType<List<StudentDto>>() {});
             logger.info("Display actual result: {}", actualResult);
             
-            //Check whether two arrays are equal to each other.        
+            //Check whether are equal to each other.        
             assertThat(actualResult, containsInAnyOrder(
                                         expectedResults.get(0),    // Jhonny
                                         expectedResults.get(1),    // Jhoselin

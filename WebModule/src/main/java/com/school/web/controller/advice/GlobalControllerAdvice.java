@@ -34,8 +34,8 @@ public class GlobalControllerAdvice {
 	* @return 400 code status - BAD_REQUEST
 	*/
 	@ExceptionHandler(ApplicationException.class)
-	public ResponseEntity<BasicError> responseToClientError(ApplicationException exception) {
-		logger.info("[GlobalControllerAdvice.responseToApplication] printStackTrace: ");
+	public ResponseEntity<BasicError> responseToApplicationError(ApplicationException exception) {
+		logger.info("[GlobalControllerAdvice.responseToApplicationError] printStackTrace: ");
 		exception.printStackTrace();
 		return new ResponseEntity<>(
 				new BasicError(exception.getCode(), exception.getMessage()), 
@@ -48,7 +48,7 @@ public class GlobalControllerAdvice {
 	*/
 	@ExceptionHandler(Exception.class)
 	public ResponseEntity<BasicError> responseToServerError(Exception exception) {
-		logger.info("[GlobalControllerAdvice.responseToClientError] printStackTrace: ");
+		logger.info("[GlobalControllerAdvice.responseToServerError] printStackTrace: ");
 		exception.printStackTrace();
 		String code = "ER001";
 		return new ResponseEntity<>(

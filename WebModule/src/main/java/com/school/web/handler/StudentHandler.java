@@ -3,7 +3,6 @@ package com.school.web.handler;
 
 import com.school.registerdb.model.Student;
 import com.school.registerdb.service.StudentManager;
-import com.school.web.util.DateUtil;
 import com.school.web.dto.StudentDetailDto;
 import com.school.web.validation.annotation.FieldValidation;
 import com.school.web.validation.rule.StudentRule;
@@ -29,6 +28,7 @@ public class StudentHandler {
     private StudentRule studentRule;
     
     public List<Student> find(String name, String gender, String type) {
+        studentRule.validateFind(type);
         List<Student> students;
         if (name != null) {
             students = studentManager.findStudentsByName(name);

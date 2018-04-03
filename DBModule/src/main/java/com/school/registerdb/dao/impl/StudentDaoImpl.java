@@ -1,5 +1,6 @@
 package com.school.registerdb.dao.impl;
 
+import com.school.registerdb.common.Type;
 import com.school.registerdb.dao.StudentDao;
 import com.school.registerdb.model.Student;
 import java.util.List;
@@ -33,7 +34,7 @@ public class StudentDaoImpl extends GenericDaoImpl<Student, Long> implements Stu
     
     @Override
     @Transactional
-    public List<Student> findByType(String type) {
+    public List<Student> findByType(Type type) {
         Session session = getSessionFactory().getCurrentSession();   
         List<Student> students = (List<Student>)session.createCriteria(Student.class)
                 .addOrder(Order.asc("timestamp"))
@@ -45,7 +46,7 @@ public class StudentDaoImpl extends GenericDaoImpl<Student, Long> implements Stu
     
     @Override
     @Transactional
-    public List<Student> findByTypeAndGender(String type, String gender) {
+    public List<Student> findByTypeAndGender(Type type, String gender) {
         Session session = getSessionFactory().getCurrentSession();   
         List<Student> students = (List<Student>)session.createCriteria(Student.class)
                 .addOrder(Order.asc("timestamp"))

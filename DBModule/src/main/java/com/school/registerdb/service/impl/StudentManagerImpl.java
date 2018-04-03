@@ -1,6 +1,7 @@
 
 package com.school.registerdb.service.impl;
 
+import com.school.registerdb.common.Type;
 import com.school.registerdb.dao.StudentDao;
 import com.school.registerdb.model.Student;
 import com.school.registerdb.service.StudentManager;
@@ -47,7 +48,7 @@ public class StudentManagerImpl extends GenericManagerImpl<Student, Long> implem
      */
     @Override
     public List<Student> findStudentsByType(String type) {
-        return studentDao.findByType(type);
+        return studentDao.findByType(Type.valueOf(type));
     }
     
     /**     
@@ -57,6 +58,6 @@ public class StudentManagerImpl extends GenericManagerImpl<Student, Long> implem
      */
     @Override
     public List<Student> findStudentsByTypeAndGender(String type, String gender) {
-        return studentDao.findByTypeAndGender(type, gender);
+        return studentDao.findByTypeAndGender(Type.valueOf(type), gender);
     }
 }
