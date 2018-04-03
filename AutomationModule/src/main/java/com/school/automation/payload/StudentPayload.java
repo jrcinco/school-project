@@ -1,17 +1,17 @@
-package com.school.automation.dto;
+package com.school.automation.payload;
 
 import java.util.Objects;
 
-public class StudentDto {
+public class StudentPayload {
     private Long id;
     private String name;
     private String gender;
     private String type;    
     private String timestamp;
     
-    public StudentDto() {}
+    public StudentPayload() {}
 
-    public StudentDto(String name, String gender, 
+    public StudentPayload(String name, String gender, 
                     String type, String timestamp) {
         this.name   = name;
         this.gender = gender;
@@ -19,7 +19,7 @@ public class StudentDto {
         this.timestamp = timestamp;
     }
 
-    public StudentDto(Long id, 
+    public StudentPayload(Long id, 
             String name, String gender, 
             String type, String timestamp) {
         this.id     = id;
@@ -99,7 +99,7 @@ public class StudentDto {
             return false;
         }
         
-        final StudentDto other = (StudentDto) obj;
+        final StudentPayload other = (StudentPayload) obj;
         if (!Objects.equals(this.name, other.name)) {
             return false;
         }

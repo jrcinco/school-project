@@ -1,7 +1,7 @@
 package com.school.testcases.apitesting;
 
 import com.school.registerdb.util.Constants;
-import com.school.automation.dto.StudentDto;
+import com.school.automation.payload.StudentPayload;
 import com.school.automation.util.MapperUtil;
 import com.school.automation.util.DataBaseUtil;
 import com.school.automation.util.RequestUtil;
@@ -32,7 +32,7 @@ import org.slf4j.LoggerFactory;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class StudentPositiveTest {    
     private final static Logger logger = LoggerFactory.getLogger(StudentPositiveTest.class);
-    private static List<StudentDto> expectedResults = new ArrayList<>();
+    private static List<StudentPayload> expectedResults = new ArrayList<>();
 
     /**
      * This test method is invoked once before any test method found from this class
@@ -43,8 +43,8 @@ public class StudentPositiveTest {
         logger.info("Invoked once before all test methods");        
         DataBaseUtil.cleanup(); // Clean Database.
         
-        MapperUtil<StudentDto> mapper = new MapperUtil<>();
-        expectedResults = mapper.getJsonListFunctionality(StudentDto.class, DataPath.STUDENT_LIST_PATH);
+        MapperUtil<StudentPayload> mapper = new MapperUtil<>();
+        expectedResults = mapper.getJsonListFunctionality(StudentPayload.class, DataPath.STUDENT_LIST_PATH);
         logger.info("[StudentPositiveTest][setUpClass] Json List: " + expectedResults);
     }
     
@@ -59,16 +59,16 @@ public class StudentPositiveTest {
 
     @Test
     @Parameters({
-            "Jhonny, M, Kinder, 20180328142530",
-            "Jhoselin, F, Kinder, 20180328152530",
-            "Elvis, M, Kinder, 20180328162530",
-            "Wendy, F, Kinder, 20180328172530"
+            "Jhonny, M, KINDER, 20180328142530",
+            "Jhoselin, F, KINDER, 20180328152530",
+            "Elvis, M, KINDER, 20180328162530",
+            "Wendy, F, KINDER, 20180328172530"
     })
     public void test1PostStudent(String name, String gender, 
                                 String type, String timestamp) {
         logger.info("StudentPositiveTest: API Testing: POST");
  
-        StudentDto dto = new StudentDto(name, gender, type, timestamp);
+        StudentPayload dto = new StudentPayload(name, gender, type, timestamp);
         Response response = RequestUtil.postRequest(EndpointPath.STUDENT_PATH, dto); 
         
         logger.info("Status Code: {}", response.getStatus());
@@ -86,8 +86,8 @@ public class StudentPositiveTest {
         Response response = RequestUtil.getRequest(EndpointPath.STUDENT_PATH);        
         
         if (response.getStatus() == Constants.OK_STATUS_CODE) {            
-            List<StudentDto> actualResult = response 
-                    .readEntity(new GenericType<List<StudentDto>>() {});
+            List<StudentPayload> actualResult = response 
+                    .readEntity(new GenericType<List<StudentPayload>>() {});
             logger.info("Display actual result: {}", actualResult);
             
             //Check whether are equal to each other.        
@@ -104,13 +104,13 @@ public class StudentPositiveTest {
 
     @Test
     @Parameters({
-        "4, Wendy Lala, F, Kinder, 20180328182530"            
+        "4, Wendy Lala, F, KINDER, 20180328182530"            
     })
     public void test3PutStudent(Long id, String name, String gender, 
                                 String type, String timestamp) {
         logger.info("StudentPositiveTest: API Testing: PUT");
                  
-        StudentDto dto = new StudentDto(name, gender, type, timestamp);       
+        StudentPayload dto = new StudentPayload(name, gender, type, timestamp);       
         Map<String, Object> pathParams = new HashMap<>();                                                                        
         pathParams.put("id", id);        
         

@@ -27,14 +27,15 @@ public class StudentHandler {
     @Autowired
     private StudentRule studentRule;
     
-    public List<Student> find(String name, String gender, String type) {
-        studentRule.validateFind(type);
+    public List<Student> find(String name, String gender, String type) {        
         List<Student> students;
         if (name != null) {
             students = studentManager.findStudentsByName(name);
         } else if (gender != null && type != null) {
+            studentRule.validateFind(type);
             students = studentManager.findStudentsByTypeAndGender(type, gender);
         } else if (type != null) {
+            studentRule.validateFind(type);
             students = studentManager.findStudentsByType(type);
         } else { // Return all data.
             students = studentManager.findAll();

@@ -1,6 +1,6 @@
 [
-    {"id":1,"name":"Jhonny","gender":"M","type":"Kinder","timestamp":"20180328142530"}, 
-    {"id":2,"name":"Jhoselin","gender":"F","type":"Kinder","timestamp":"20180328152530"}, 
-    {"id":3,"name":"Elvis","gender":"M","type":"Kinder","timestamp":"20180328162530"}, 
-    {"id":4,"name":"Wendy","gender":"F","type":"Kinder","timestamp":"20180328172530"}
+    {"id":1,"name":"Jhonny","gender":"M","type":"KINDER","timestamp":"20180328142530"}, 
+    {"id":2,"name":"Jhoselin","gender":"F","type":"KINDER","timestamp":"20180328152530"}, 
+    {"id":3,"name":"Elvis","gender":"M","type":"KINDER","timestamp":"20180328162530"}, 
+    {"id":4,"name":"Wendy","gender":"F","type":"KINDER","timestamp":"20180328172530"}
 ]
