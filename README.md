@@ -85,7 +85,6 @@ The School project is a RestFul Sever with a student CRUD.
 {}
 ```
 ![Post!](https://github.com/jrcinco/school-project/blob/master/files/post.png)
-Note: cmd, timestamp and observation are informative fields.
 
 2. Update a student.
 
@@ -104,7 +103,6 @@ Note: cmd, timestamp and observation are informative fields.
 {}
 ```
 ![Put!](https://github.com/jrcinco/school-project/blob/master/files/put.png)
-Note: cmd, timestamp and observation are informative fields.
 
 3. Delete a student.
 
@@ -118,7 +116,6 @@ Note: cmd, timestamp and observation are informative fields.
 {}
 ```
 ![Put!](https://github.com/jrcinco/school-project/blob/master/files/delete.png)
-Note: cmd, timestamp and observation are informative fields.
 
 4. List students by name, type or gender.
 
