@@ -75,7 +75,7 @@ The School project is a RestFul Sever with a student CRUD.
 {
   "name":"jhonny cinco",
   "gender":"M",
-  "type":"Kinder",
+  "type":"KINDER",
   "timestamp":"2018104518524523"
 }
 ```
@@ -94,7 +94,7 @@ Note: cmd, timestamp and observation are informative fields.
 {
   "name":"jhoselin",
   "gender":"F",
-  "type":"Kinder",
+  "type":"KINDER",
   "timestamp":"2018104518524523"
 }
 ```
@@ -124,8 +124,8 @@ Note: cmd, timestamp and observation are informative fields.
 
 For example: 
       * http://localhost:8088/student?name=jhonny
-      * http://localhost:8088/student?type=kinder
-      * http://localhost:8088/student?type=kinder&gender=M``
+      * http://localhost:8088/student?type=KINDER
+      * http://localhost:8088/student?type=KINDER&gender=M
 
 **Json Response:**
 ```
@@ -134,35 +134,35 @@ For example:
         "id": 5,
         "name": "jhoana4",
         "gender": "M",
-        "type": "Kinder",
+        "type": "KINDER",
         "timestamp": "20180216083452"
     },
     {
         "id": 1,
         "name": "jhonnyxxx",
         "gender": "M",
-        "type": "Kinder",
+        "type": "KINDER",
         "timestamp": "21453212454"
     },
     {
         "id": 2,
         "name": "jhonny14",
         "gender": "M",
-        "type": "Kinder",
+        "type": "KINDER",
         "timestamp": "21453212454"
     },
     {
         "id": 3,
         "name": "jhonny185",
         "gender": "M",
-        "type": "Kinder",
+        "type": "KINDER",
         "timestamp": "21453212454"
     },
     {
         "id": 4,
         "name": "jhoana",
         "gender": "M",
-        "type": "Kinder",
+        "type": "KINDER",
         "timestamp": "21453212454"
     }
 ]
